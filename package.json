@@ -1,0 +1,19 @@
+{
+  "name": "laughing_wall",
+  "version": "1.0.0",
+  "description": "A wall of YouTube laughs",
+  "main": "index.js",
+  "dependencies": {
+    "ytdl-core": "^0.7.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "youtube",
+    "laughs"
+  ],
+  "author": "Jean-Philippe Drecourt",
+  "license": "MIT"
+}
