@@ -5,9 +5,9 @@ class VideoWall {
     let videoNames = createVideoNames();
     let nVideos = 0, maxVideos = 10;
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 8; i++) {
       $('.wrapper').append('<div class="videoLine"></div>');
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < 8; j++) {
         $('.videoLine').last().append('<div class="videoDiv"></div>');
         $('.videoDiv').last().append('<video></video>');
         $('video').last().attr({
