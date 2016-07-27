@@ -44,10 +44,51 @@ ffmpeg -i gmleHMY3OOo.vob -ss 00:00:16.266 -t 1.3 -vn out.mp3
 
 **TODO**: Try with one gif and see how many Chrome will take.
 
-#25/07/2015
+# 2016/07/25
 
 ## YouTube videos
 Can be transfered into MP4, which seem to be OKish. Still some issues but GIFs seem to be too big for the amounth of videos wanted.
 
 `laughs.csv` contains the different extracts.
 Processed by `clipsToGifs.sh`, except that it doesn't process GIFs anymore at the moment.
+
+# 2016/07/26
+
+## New approach
+It looks like the video approach is simply not feasible this way. Since the important part is the sound, I will try to capture a few images (maybe 10 per second) and animate them in an object while the sound is played. This way I also have more control on the sound.
+
+`ffmpeg -i gmleHMY3OOo_1.mp4 -vf fps=5 test_out%d.jpg` seems to do a pretty good job and the jpegs are about the size of the original video. It's probably possible to combine this with the mp4 extraction command to avoid having to convert into mp4. Then I'll get snapshots and mp3 audio that I can process.
+
+# 2016/07/27
+
+## General process
+
+### Download FailArmy YouTube videos
+* High quality & video using itag 22
+* Split the audio (`ffmpeg`, see above)
+
+### Extract laughs
+* Use the split audio to find the laughs (It should be easier)
+  - Using audacity or another audio editing software
+* Write them down in the `laughs.csv` file.
+* Reextract the audio using `ffmpeg`
+* Extract small jpegs snapshots (can you make them smaller with `ffmpeg`?)
+
+### Package the laughs in an object
+* Container to display the laughs on the DOM
+* Sync the snapshots with the audio
+
+### Classify the laughs using unsupervised learning
+**QUESTIONS**
+* What neural networks should I use?
+* What programming language tool should I use?
+* How to input audio into neural nets?
+* What output should I use? (matrix, or some distance measure)
+
+### Display the laughs on the 'wall'
+* According to their similarity
+* Interaction through clicks on one laugh
+  - Propagates through the other laughs
+  - Random propagation to neighbours (including the number of neighbours 0 - 4)
+  - Random delay between laughs
+* If the user doesn't click, click one at random for her
