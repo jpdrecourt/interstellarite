@@ -92,3 +92,14 @@ It looks like the video approach is simply not feasible this way. Since the impo
   - Random propagation to neighbours (including the number of neighbours 0 - 4)
   - Random delay between laughs
 * If the user doesn't click, click one at random for her
+
+## More on animated image
+Using gifs from https://room208.org/blog/posts/48793543478.html
+``` bash
+> ffmpeg -i gmleHMY3OOo_1.mp4 -s 128x72 -f image2 ./anim/%03d.png  
+> convert -delay 1x5 $(seq -f %03g.png 1 6 40) +dither -coalesce -layers OptimizeTransparency +map animation.gif
+```
+
+With a few tweaks, it works perfectly fine. Adding Buzz also makes everything work. Only issue with the repeated gifs: The GIF is repeated if it's more than once on the page. But that won't be a problem with the final product.
+
+**TODO**: Make the images even smaller (64x36) seems to be good

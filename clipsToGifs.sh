@@ -9,6 +9,9 @@
 datafile="$1"
 sourceDir="./rawData.nobackup"
 targetDir="./clips.nobackup"
+size="64x36"
+fps="10"
+
 while read -r line
 do
   original=$(echo $line | cut -f1 -d,)
@@ -19,11 +22,14 @@ do
   echo $line
   # Extract clip
   ffmpeg -i $sourceDir'/'$original -ss $clipStart -t $clipLength -f mp4 -strict -2 $targetDir'/'$clipName'.mp4' < /dev/null
-  # # Extract audio
-  # ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -t $clipLength -vn $targetDir'/'$clipName'.mp3' < /dev/null
-  # # Make GIF (http://xmodulo.com/convert-video-animated-gif-image-linux.html)
-  # ffmpeg -t $clipLength -ss 00:00:00 -i $targetDir'/'$clipName'.vob' $targetDir'/'$clipName'%04d.jpg' < /dev/null
-  # convert -delay 1x20 -loop 0 $targetDir'/'$clipName'*.jpg' $targetDir'/'$clipName'_large.gif' < /dev/null
-  # convert -layers Optimize $targetDir'/'$clipName'_large.gif' $targetDir'/'$clipName'_small.gif' < /dev/null
+  # Extract audio
+  ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -t $clipLength -vn $targetDir'/'$clipName'.mp3' < /dev/null
+  # Extract poster image
+  ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -s $size -vframes 1 $targetDir'/'$clipName'.png' < /dev/null
+
+  # Turn into GIF
+  ffmpeg -i $targetDir'/'$clipName'.mp4' -s $size -vf fps=$fps -f image2 $targetDir'/anim/%03d.png' < /dev/null
+  convert -delay 1x$fps -loop 1 $targetDir'/anim/*.png' +dither -coalesce -layers OptimizeTransparency +map $targetDir'/'$clipName'.gif' < /dev/null
+  rm $targetDir'/anim/'*.png
 
 done < "$datafile"
