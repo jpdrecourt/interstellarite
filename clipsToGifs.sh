@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 # Script used to extract clips from a video file, getting data from a CSV
 # file and returning an optimised GIF and a sound file
 # Fields in the CSV file

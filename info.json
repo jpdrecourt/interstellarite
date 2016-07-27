@@ -31,7 +31,7 @@ Error: null
   oid: 'lL3sqLr2Wc0vz2fyUsOn9w',
   probe_url: 'https://r2---sn-vgqs7nly.googlevideo.com/videogoodput?id=o-AGv5syGE0Rz3kZmkGM81SZaSc0TWwjFjb6YxdiU91Iwc&source=goodput&range=0-4999&expire=1469258553&ip=86.21.240.209&ms=pm&mm=35&pl=24&nh=IgpwZjAxLm9yZDM1Kg03Mi4xNC4yMDQuMTY5&sparams=id,source,range,expire,ip,ms,mm,pl,nh&signature=66DEDD404D3959F8E28788377783011238A2C2AB.53969B7777FAF33E20B079EA457B28E1E0463CAD&key=cms1',
   iurlmaxres: 'https://i.ytimg.com/vi/gmleHMY3OOo/maxresdefault.jpg',
-  watermark: 
+  watermark:
    [ 'https://s.ytimg.com/yts/img/watermark/youtube_watermark-vflHX6b6E.png',
      'https://s.ytimg.com/yts/img/watermark/youtube_hd_watermark-vflAzLcD6.png' ],
   videostats_playback_base_url: 'https://s.youtube.com/api/stats/playback?ns=yt&el=detailpage&plid=AAU4R5OU_HghyqoJ&docid=gmleHMY3OOo&fexp=9405967%2C9408206%2C9416891%2C9419452%2C9420095%2C9422596%2C9428398%2C9431012%2C9431899%2C9433096%2C9433221%2C9433946%2C9434899%2C9435490%2C9435526%2C9435876%2C9436592%2C9437066%2C9437553%2C9437742%2C9438547%2C9438591%2C9438662%2C9438968%2C9439475%2C9439580%2C9439652%2C9439679%2C9439891%2C9440646%2C9440881%2C9441106%2C9441844%2C9442424%2C9442687&of=Lr6-_zaI318GUoJbha_LUw&ei=KQ2TV_S0FMLrWJvCsLAB&len=406&cl=128090723&vm=CAEQAQ',
@@ -70,7 +70,7 @@ Error: null
   iurlhq: 'https://i.ytimg.com/vi/gmleHMY3OOo/hqdefault.jpg',
   is_listed: '1',
   plid: 'AAU4R5OU_HghyqoJ',
-  fexp: 
+  fexp:
    [ '9405967',
      '9408206',
      '9416891',
@@ -134,7 +134,7 @@ Error: null
   tmi: '1',
   iv_invideo_url: 'https://www.youtube.com/annotations_invideo?cap_hist=1&video_id=gmleHMY3OOo&ei=KQ2TV_S0FMLrWJvCsLAB',
   cl: '128090723',
-  keywords: 
+  keywords:
    [ 'fail',
      'fails',
      'failarmy',
@@ -180,7 +180,7 @@ Error: null
   fade_in_start_milliseconds: '-3000',
   idpj: '-8',
   enablejsapi: '1',
-  fmt_list: 
+  fmt_list:
    [ [ '22', '1280x720', '9', '0', '115' ],
      [ '43', '640x360', '99', '0', '0' ],
      [ '18', '640x360', '9', '0', '115' ],
@@ -189,7 +189,7 @@ Error: null
   focEnabled: '1',
   t: '1',
   ptk: 'H7XeNNPkVV3JZxXm-O-MCA',
-  formats: 
+  formats:
    [ { url: 'https://r3---sn-8pgbpohxqp5-ajtl.googlevideo.com/videoplayback?dur=405.164&mv=m&mt=1469254413&ms=au&itag=22&initcwndbps=2540000&sparams=cnr%2Cdur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cupn%2Cexpire&sver=3&cnr=14&id=o-AKJpWy_z-E_CGW93KBp9vfcrpR6VWLWyuxRb2U2n0vjh&mn=sn-8pgbpohxqp5-ajtl&mm=31&ip=86.21.240.209&pl=22&ratebypass=yes&ipbits=0&lmt=1469140277870313&expire=1469276553&fexp=9405967%2C9408206%2C9416891%2C9419452%2C9420095%2C9422596%2C9428398%2C9431012%2C9431899%2C9433096%2C9433221%2C9433946%2C9434899%2C9435490%2C9435526%2C9435876%2C9436592%2C9437066%2C9437553%2C9437742%2C9438547%2C9438591%2C9438662%2C9438968%2C9439475%2C9439580%2C9439652%2C9439679%2C9439891%2C9440646%2C9440881%2C9441106%2C9441844%2C9442424%2C9442687&requiressl=yes&mime=video%2Fmp4&source=youtube&upn=xocmn_rpFy8&signature=39F769A75E1FB74EAA8E4C35EE147E13234FB2BD.7D9C5958E3C0197735EA8F70551AD491EB741945&ei=KQ2TV_S0FMLrWJvCsLAB&key=yt6',
        quality: 'hd720',
        itag: '22',

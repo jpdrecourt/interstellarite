@@ -1,15 +1,38 @@
 const fs = require('fs'),
-  ytdl = require('ytdl-core'),
-  gify = require('gify');
+  ytdl = require('ytdl-core');
 
+let options = {};
+options.quality = '22'; //hd720 quality, mostly for sound in this case
+// options.quality = 'lowest';
 
-// let options = {};
-// options.quality = '43';
 
 // ytdl.getInfo('http://www.youtube.com/watch?v=gmleHMY3OOo', (err, info) => {console.log('Error: ' + err); console.log(info);});
 
-// ytdl('http://www.youtube.com/watch?v=gmleHMY3OOo', options)
-  // .pipe(fs.createWriteStream('video.flv'));
+let videos = [
+  'gmleHMY3OOo',
+  'IQpPdkd0B6M'
+];
 
-gify('./rawData.nobackup/out.vob', 'out.gif', (err) => {
-  if (err) throw err;});
+getStream(videos);
+
+function getStream(videos, index=0) {
+  if (index < videos.length) {
+    let videoUrl = 'http://www.youtube.com/watch?v=' + videos[index];
+    let path = './rawData.nobackup/' + videos[index] + '.mp4';
+    console.log('Processing: ' + videoUrl);
+    fs.access(path, fs.F_OK, function(err) {
+      if (err) {
+        // Download video
+        ytdl(videoUrl, options)
+          .pipe(fs.createWriteStream(path))
+          .on('finish', () => {getStream(videos, ++index);});
+      } else {
+          // Skip, it's already downloaded
+          console.log('Already downloaded, skipping');
+          getStream(videos, ++index);
+      }
+    });
+  } else {
+    return false;
+  }
+}

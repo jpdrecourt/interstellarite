@@ -43,7 +43,8 @@ function createVideoNames() {
   let clipData = {
     'rootDir': './clips.nobackup/',
     'clips': [
-      {'name': 'gmleHMY3OOo', n: 8}
+      {'name': 'gmleHMY3OOo', n: 10},
+      {'name': 'IQpPdkd0B6M', n: 11}
     ]
   };
   let output = [];
