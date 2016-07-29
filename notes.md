@@ -118,4 +118,6 @@ The file extraction now works well. It's a bit tedious to change the name of the
 * Visualize the beautiful work on the webpage!
 
 ## Delay until next sound
-**TODO**: Explore when the next sound is actually triggered. It seems that the TimeOut waits too long to trigger the next sound.
+**TODO**: Explore when the next sound is actually triggered. It seems that the TimeOut waits too long to trigger the next sound. **DONE**
+
+It seems that Buzz doesn't measure the sound duration properly with `sound.getDuration()`

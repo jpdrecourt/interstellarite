@@ -1,4 +1,6 @@
 
+let tStart = performance.now();
+let t;
 
 class VideoWall {
   constructor (width=150) {
@@ -26,9 +28,9 @@ class VideoWall {
             'i': `${i}`,
             'j': `${j}`,
             'id': `${i}_${j}`,
-            'src': this.videoNames[(this.size * i + j)%this.videoNames.length] + '.png'
+            'src': this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.png'
           });
-        this.sounds.push(new buzz.sound(this.videoNames[(this.size * i + j)%this.videoNames.length] + '.mp3'));
+        this.sounds[this.vidIndex(i, j)] = new buzz.sound(this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.mp3');
       }
     }
 
@@ -43,16 +45,22 @@ class VideoWall {
 
   }
 
+  vidIndex(l, c) {
+    return this.size * l + c;
+  }
+
   playVid(l, c) {
     let $target = $(`#${l}_${c}`);
-    let nameIndex = this.size * l + c;
+    let nameIndex = this.vidIndex(l, c);
+    // Aci
     $target
       .addClass('activated')
       .removeClass('deactivated')
       .removeClass('hidden')
       .attr({
-        'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.gif'
+        'src': this.videoNames[nameIndex%this.videoNames.length] + '.gif'
       });
+    // Blinking frame
     setTimeout(() => {
       $target
         .addClass('deactivated')
@@ -65,6 +73,7 @@ class VideoWall {
           'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.png'
         });
     });
+    console.log($target.attr('src') + ': ' + sound.getDuration());
     if (!sound.isPaused()) sound.stop();
     sound.play();
     let next = Math.floor(Math.random() * 4);
@@ -84,8 +93,11 @@ class VideoWall {
     }
     if (l < this.size && l >= 0 && c < this.size && c >= 0) {
       let self = this;
+      let newNameIndex = this.vidIndex(l, c);
       // Play next sound
-      setTimeout(() => {self.playVid(l, c);}, sound.getDuration() * 1000 * (Math.random() * (100 - self.madness) / 100));
+      setTimeout(() => {
+        self.playVid(l, c);
+      }, sound.getDuration() * 1000 * ( Math.random() *  (100 - self.madness) / 100));
     }
   }
 }
@@ -108,7 +120,6 @@ function createVideoNames() {
       output.push(clipData.rootDir + clipData.clips[i].name + '_' + (j + 1));
     }
   }
-  console.log(output);
   return output;
 }
 
