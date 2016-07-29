@@ -29,7 +29,7 @@ Forces a recode of the file, which prevents reading issues (master frame?)
 gify('./rawData.nobackup/out.vob', 'out.gif', (err) => {
   if (err) throw err;});
 ```
-**TODO**: GIF file is big and ugly - Try with ffmpeg or ImageMagick.
+**TODO**: GIF file is big and ugly - Try with ffmpeg or ImageMagick. **DONE**
 
 ### Getting the audio from the file
 ```
@@ -42,7 +42,7 @@ ffmpeg -i gmleHMY3OOo.vob -ss 00:00:16.266 -t 1.3 -vn out.mp3
 2. Run a script to decode the file, gif it (ffmpeg maybe) and extract the audio
 3. Display the whole thing on a page
 
-**TODO**: Try with one gif and see how many Chrome will take.
+**TODO**: Try with one gif and see how many Chrome will take. **DONE**
 
 # 2016/07/25
 
@@ -117,4 +117,5 @@ The file extraction now works well. It's a bit tedious to change the name of the
 * Amend the clipdata in `laughingWall.js`
 * Visualize the beautiful work on the webpage!
 
-## Laugh classification
+## Delay until next sound
+**TODO**: Explore when the next sound is actually triggered. It seems that the TimeOut waits too long to trigger the next sound.

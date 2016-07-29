@@ -18,12 +18,16 @@ class VideoWall {
       $('.wrapper').append('<div class="videoLine"></div>');
       for (let j = 0; j < this.size; j++) {
         $('.videoLine').last().append('<img>');
-        $('img').last().addClass('gif').addClass('deactivated').attr({
-          'i': `${i}`,
-          'j': `${j}`,
-          'id': `${i}_${j}`,
-          'src': this.videoNames[(this.size * i + j)%this.videoNames.length] + '.png'
-        });
+        $('img').last()
+          .addClass('gif')
+          .addClass('deactivated')
+          .addClass('hidden')
+          .attr({
+            'i': `${i}`,
+            'j': `${j}`,
+            'id': `${i}_${j}`,
+            'src': this.videoNames[(this.size * i + j)%this.videoNames.length] + '.png'
+          });
         this.sounds.push(new buzz.sound(this.videoNames[(this.size * i + j)%this.videoNames.length] + '.mp3'));
       }
     }
@@ -41,17 +45,26 @@ class VideoWall {
 
   playVid(l, c) {
     let $target = $(`#${l}_${c}`);
+    let nameIndex = this.size * l + c;
     $target
       .addClass('activated')
       .removeClass('deactivated')
+      .removeClass('hidden')
       .attr({
-        'src': this.videoNames[(this.size * l + c)%this.videoNames.length] + '.gif'
+        'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.gif'
       });
     setTimeout(() => {
       $target
         .addClass('deactivated')
         .removeClass('activated');}, 100);
-    let sound = this.sounds[l * this.size + c];
+    let sound = this.sounds[nameIndex];
+    sound.bind('ended', () => {
+      $target
+        .addClass('hidden')
+        .attr({
+          'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.png'
+        });
+    });
     if (!sound.isPaused()) sound.stop();
     sound.play();
     let next = Math.floor(Math.random() * 4);
@@ -69,7 +82,6 @@ class VideoWall {
         l++;
         break;
     }
-    console.log([l, c]);
     if (l < this.size && l >= 0 && c < this.size && c >= 0) {
       let self = this;
       // Play next sound

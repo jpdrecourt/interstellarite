@@ -3,6 +3,7 @@ body {
   flex-direction: column;
   justify-content: center;
   background-color: black;
+  white-space: nowrap;
 }
 
 .wrapper {
@@ -23,6 +24,10 @@ body {
 
 .activated {
   border: 2px solid white;
+}
+
+.hidden {
+  opacity: 0.15;
 }
 
 .madness {
