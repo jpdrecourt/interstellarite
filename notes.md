@@ -116,3 +116,5 @@ The file extraction now works well. It's a bit tedious to change the name of the
 * When laughs are collected, run `./clipsToGifs laughs.csv` to extract the laughs
 * Amend the clipdata in `laughingWall.js`
 * Visualize the beautiful work on the webpage!
+
+## Laugh classification
