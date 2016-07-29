@@ -16,9 +16,9 @@ class VideoWall {
           'i': `${i}`,
           'j': `${j}`,
           'id': `${i}_${j}`,
-          'src': videoNames[(i+j)%videoNames.length] + '.png'
+          'src': videoNames[(size * i + j)%videoNames.length] + '.png'
         });
-        sounds.push(new buzz.sound(videoNames[(i+j)%videoNames.length] + '.mp3'));
+        sounds.push(new buzz.sound(videoNames[(size * i + j)%videoNames.length] + '.mp3'));
 
       }
     }
@@ -28,9 +28,9 @@ class VideoWall {
         jj = parseInt($target.attr('j'));
       if (ii !== undefined) {
         $(`#${ii}_${jj}`).attr({
-          'src': videoNames[(ii+jj)%videoNames.length] + '.gif'
+          'src': videoNames[(size * ii + jj)%videoNames.length] + '.gif'
         });
-        console.log(size* ii + jj);
+        console.log(size * ii + jj);
         sounds[ii * size + jj].play();
       }
     });
@@ -44,7 +44,9 @@ function createVideoNames() {
     'rootDir': './clips.nobackup/',
     'clips': [
       {'name': 'gmleHMY3OOo', n: 10},
-      {'name': 'IQpPdkd0B6M', n: 11}
+      {'name': 'IQpPdkd0B6M', n: 11},
+      {'name': 'VuCQGGhgAaQ', n: 12},
+      {'name': '94SKl5gmtQw', n: 10}
     ]
   };
   let output = [];
@@ -53,6 +55,7 @@ function createVideoNames() {
       output.push(clipData.rootDir + clipData.clips[i].name + '_' + (j + 1));
     }
   }
+  console.log(output);
   return output;
 }
 

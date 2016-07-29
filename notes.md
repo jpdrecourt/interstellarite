@@ -102,4 +102,17 @@ Using gifs from https://room208.org/blog/posts/48793543478.html
 
 With a few tweaks, it works perfectly fine. Adding Buzz also makes everything work. Only issue with the repeated gifs: The GIF is repeated if it's more than once on the page. But that won't be a problem with the final product.
 
-**TODO**: Make the images even smaller (64x36) seems to be good
+**TODO**: Make the images even smaller (64x36) seems to be good - **DONE**
+
+# 2016/07/29
+
+## File extraction
+The file extraction now works well. It's a bit tedious to change the name of the files in different places, but I don't think it warrants major code changes.
+
+### Workflow
+* Add the YouTube file ID in `index.js`, comment out the files that are in the done folder
+* Run `node index.js` to download the YouTube file
+* Open one file in Audacity and collect the laughs in `laughs.csv`
+* When laughs are collected, run `./clipsToGifs laughs.csv` to extract the laughs
+* Amend the clipdata in `laughingWall.js`
+* Visualize the beautiful work on the webpage!
