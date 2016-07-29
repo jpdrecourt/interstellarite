@@ -9,8 +9,18 @@ options.quality = '22'; //hd720 quality, mostly for sound in this case
 // ytdl.getInfo('http://www.youtube.com/watch?v=gmleHMY3OOo', (err, info) => {console.log('Error: ' + err); console.log(info);});
 
 let videos = [
-  'gmleHMY3OOo',
-  'IQpPdkd0B6M'
+  // 'gmleHMY3OOo',
+  // 'IQpPdkd0B6M',
+  // 'VuCQGGhgAaQ',
+  // '94SKl5gmtQw',
+  // 'JFO7YIK79So',
+  // '-1Jo50Y8L3M',
+  // 'jyvJtA0c06M',
+  // 'ndFTtjiFQAk',
+  // 'OHs-OcIglJM',
+  // 'WI5nf1s-8po',
+  // '16ZQeMl5ioI',
+  'yL1cHkNtXuE'
 ];
 
 getStream(videos);

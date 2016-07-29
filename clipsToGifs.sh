@@ -21,15 +21,19 @@ do
   echo '***** Processing: '$original
   echo $line
   # Extract clip
-  ffmpeg -i $sourceDir'/'$original -ss $clipStart -t $clipLength -f mp4 -strict -2 $targetDir'/'$clipName'.mp4' < /dev/null
-  # Extract audio
-  ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -t $clipLength -vn $targetDir'/'$clipName'.mp3' < /dev/null
-  # Extract poster image
-  ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -s $size -vframes 1 $targetDir'/'$clipName'.png' < /dev/null
+  if [! $targetDir'/'$clipName'.mp4']; then
+    ffmpeg -i $sourceDir'/'$original -ss $clipStart -t $clipLength -f mp4 -strict -2 $targetDir'/'$clipName'.mp4' < /dev/null
+    # Extract audio
+    ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -t $clipLength -vn $targetDir'/'$clipName'.mp3' < /dev/null
+    # Extract poster image
+    ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -s $size -vframes 1 $targetDir'/'$clipName'.png' < /dev/null
 
-  # Turn into GIF
-  ffmpeg -i $targetDir'/'$clipName'.mp4' -s $size -vf fps=$fps -f image2 $targetDir'/anim/%03d.png' < /dev/null
-  convert -delay 1x$fps -loop 1 $targetDir'/anim/*.png' +dither -coalesce -layers OptimizeTransparency +map $targetDir'/'$clipName'.gif' < /dev/null
-  rm $targetDir'/anim/'*.png
+    # Turn into GIF
+    ffmpeg -i $targetDir'/'$clipName'.mp4' -s $size -vf fps=$fps -f image2 $targetDir'/anim/%03d.png' < /dev/null
+    convert -delay 1x$fps -loop 1 $targetDir'/anim/*.png' +dither -coalesce -layers OptimizeTransparency +map $targetDir'/'$clipName'.gif' < /dev/null
+    rm $targetDir'/anim/'*.png
+  else
+    echo 'Skipping '$clipName
+  fi
 
 done < "$datafile"
