@@ -2,41 +2,83 @@
 
 class VideoWall {
   constructor (width=150) {
-    let videoNames = createVideoNames();
-    let nVideos = 0, maxVideos = 10;
-    let sounds = [];
-    let size = 20;
+    this.videoNames = createVideoNames();
+    this.sounds = [];
+    this.size = 20;
+    this.madness = 50;
+    let self = this;
 
-    for (let i = 0; i < size; i++) {
+    // Slider
+    $('#madnessSlider').on('mousedown mouseup mousemove', () => {
+      self.madness = $('#madnessSlider').val();
+    });
+
+
+    for (let i = 0; i < this.size; i++) {
       $('.wrapper').append('<div class="videoLine"></div>');
-      for (let j = 0; j < size; j++) {
-        $('.videoLine').last().append('<div class="videoDiv"></div>');
-        $('.videoDiv').last().append('<img>');
-        $('img').last().attr({
+      for (let j = 0; j < this.size; j++) {
+        $('.videoLine').last().append('<img>');
+        $('img').last().addClass('gif').addClass('deactivated').attr({
           'i': `${i}`,
           'j': `${j}`,
           'id': `${i}_${j}`,
-          'src': videoNames[(size * i + j)%videoNames.length] + '.png'
+          'src': this.videoNames[(this.size * i + j)%this.videoNames.length] + '.png'
         });
-        sounds.push(new buzz.sound(videoNames[(size * i + j)%videoNames.length] + '.mp3'));
+        this.sounds.push(new buzz.sound(this.videoNames[(this.size * i + j)%this.videoNames.length] + '.mp3'));
 
       }
     }
-    $('body').mouseover (function(e) {
+
+    $('body').click (function(e) {
       let $target = $(e.target),
         ii = parseInt($target.attr('i')),
         jj = parseInt($target.attr('j'));
-      if (ii !== undefined) {
-        $(`#${ii}_${jj}`).attr({
-          'src': videoNames[(size * ii + jj)%videoNames.length] + '.gif'
-        });
-        console.log(size * ii + jj);
-        sounds[ii * size + jj].play();
+      if (!isNaN(ii)) {
+        self.playVid(ii, jj);
       }
     });
 
   }
+
+  playVid(l, c) {
+    let $target = $(`#${l}_${c}`);
+    $target
+      .addClass('activated')
+      .removeClass('deactivated')
+      .attr({
+        'src': this.videoNames[(this.size * l + c)%this.videoNames.length] + '.gif'
+      });
+    setTimeout(() => {
+      $target
+        .addClass('deactivated')
+        .removeClass('activated');}, 100);
+    let sound = this.sounds[l * this.size + c];
+    if (!sound.isPaused()) sound.stop();
+    sound.play();
+    let next = Math.floor(Math.random() * 4);
+    switch (next) { // Trigonometric direction from 0 rads
+      case 0:
+        c++;
+        break;
+      case 1:
+        l--;
+        break;
+      case 2:
+        c--;
+        break;
+      case 3:
+        l++;
+        break;
+    }
+    console.log([l, c]);
+    if (l < this.size && l >= 0 && c < this.size && c >= 0) {
+      let self = this;
+      // Play next sound
+      setTimeout(() => {self.playVid(l, c);}, sound.getDuration() * 1000 * ((100 - self.madness) / 100));
+    }
+  }
 }
+
 
 
 function createVideoNames() {
@@ -55,7 +97,6 @@ function createVideoNames() {
       output.push(clipData.rootDir + clipData.clips[i].name + '_' + (j + 1));
     }
   }
-  console.log(output);
   return output;
 }
 
