@@ -23,7 +23,6 @@ body {
 
 .activated {
   border: 2px solid white;
-  background-color: white;
 }
 
 .madness {
@@ -36,4 +35,8 @@ body {
 }
 
 .madnessText {
+}
+
+#madnessSlider {
+  width: 300px;
 }

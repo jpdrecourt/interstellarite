@@ -74,7 +74,7 @@ class VideoWall {
     if (l < this.size && l >= 0 && c < this.size && c >= 0) {
       let self = this;
       // Play next sound
-      setTimeout(() => {self.playVid(l, c);}, sound.getDuration() * 1000 * ((100 - self.madness) / 100));
+      setTimeout(() => {self.playVid(l, c);}, sound.getDuration() * 1000 * (Math.random() * (100 - self.madness) / 100));
     }
   }
 }
