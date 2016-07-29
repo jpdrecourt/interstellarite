@@ -25,7 +25,6 @@ class VideoWall {
           'src': this.videoNames[(this.size * i + j)%this.videoNames.length] + '.png'
         });
         this.sounds.push(new buzz.sound(this.videoNames[(this.size * i + j)%this.videoNames.length] + '.mp3'));
-
       }
     }
 
@@ -97,6 +96,7 @@ function createVideoNames() {
       output.push(clipData.rootDir + clipData.clips[i].name + '_' + (j + 1));
     }
   }
+  console.log(output);
   return output;
 }
 
