@@ -21,7 +21,7 @@ do
   echo '***** Processing: '$original
   echo $line
   # Extract clip
-  if [! $targetDir'/'$clipName'.mp4']; then
+  if [ ! -f $targetDir'/'$clipName'.mp4' ]; then
     ffmpeg -i $sourceDir'/'$original -ss $clipStart -t $clipLength -f mp4 -strict -2 $targetDir'/'$clipName'.mp4' < /dev/null
     # Extract audio
     ffmpeg -i $targetDir'/'$clipName'.mp4' -ss 00:00:00 -t $clipLength -vn $targetDir'/'$clipName'.mp3' < /dev/null

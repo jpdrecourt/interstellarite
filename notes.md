@@ -110,12 +110,12 @@ With a few tweaks, it works perfectly fine. Adding Buzz also makes everything wo
 The file extraction now works well. It's a bit tedious to change the name of the files in different places, but I don't think it warrants major code changes.
 
 ### Workflow
-* Add the YouTube file ID in `index.js`, comment out the files that are in the done folder
-* Run `node index.js` to download the YouTube file
-* Open one file in Audacity and collect the laughs in `laughs.csv`
-* When laughs are collected, run `./clipsToGifs laughs.csv` to extract the laughs
-* Amend the clipdata in `laughingWall.js`
-* Visualize the beautiful work on the webpage!
+1. Add the YouTube file ID in `index.js`, comment out the files that are in the done folder
+2. Run `node index.js` to download the YouTube file
+3. Open one file in Audacity and collect the laughs in `laughs.csv`
+4. When laughs are collected, run `./clipsToGifs.sh laughs.csv` to extract the laughs
+5. Amend the clipdata in `laughingWall.js`
+6. Visualize the beautiful work on the webpage!
 
 ## Delay until next sound
 **TODO**: Explore when the next sound is actually triggered. It seems that the TimeOut waits too long to trigger the next sound. **DONE**
