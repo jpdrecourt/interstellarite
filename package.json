@@ -4,7 +4,6 @@
   "description": "A wall of YouTube laughs",
   "main": "index.js",
   "dependencies": {
-    "buzz": "^1.2.0",
     "ffmpeg": "0.0.4",
     "gify": "^0.2.0",
     "howler": "^2.0.0",
