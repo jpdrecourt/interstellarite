@@ -30,7 +30,10 @@ class VideoWall {
             'id': `${i}_${j}`,
             'src': this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.png'
           });
-        this.sounds[this.vidIndex(i, j)] = new buzz.sound(this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.mp3');
+        this.sounds[this.vidIndex(i, j)] = new Howl({
+          src: this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.mp3' });
+        this.sounds[this.vidIndex(i, j)].stereo(0.7 * (2 * j / (this.size - 1) - 1));
+
       }
     }
 
@@ -66,39 +69,38 @@ class VideoWall {
         .addClass('deactivated')
         .removeClass('activated');}, 100);
     let sound = this.sounds[nameIndex];
-    sound.bind('ended', () => {
-      $target
-        .addClass('hidden')
-        .attr({
-          'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.png'
-        });
-    });
-    console.log($target.attr('src') + ': ' + sound.getDuration());
-    if (!sound.isPaused()) sound.stop();
+    // sound.bind('ended', () => {
+    //   $target
+    //     .addClass('hidden')
+    //     .attr({
+    //       'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.png'
+    //     });
+    // });
+    // (sound.isPaused()) sound.stop();
     sound.play();
-    let next = Math.floor(Math.random() * 4);
-    switch (next) { // Trigonometric direction from 0 rads
-      case 0:
-        c++;
-        break;
-      case 1:
-        l--;
-        break;
-      case 2:
-        c--;
-        break;
-      case 3:
-        l++;
-        break;
-    }
-    if (l < this.size && l >= 0 && c < this.size && c >= 0) {
-      let self = this;
-      let newNameIndex = this.vidIndex(l, c);
-      // Play next sound
-      setTimeout(() => {
-        self.playVid(l, c);
-      }, sound.getDuration() * 1000 * ( Math.random() *  (100 - self.madness) / 100));
-    }
+    // let next = Math.floor(Math.random() * 4);
+    // switch (next) { // Trigonometric direction from 0 rads
+    //   case 0:
+    //     c++;
+    //     break;
+    //   case 1:
+    //     l--;
+    //     break;
+    //   case 2:
+    //     c--;
+    //     break;
+    //   case 3:
+    //     l++;
+    //     break;
+    // }
+    // if (l < this.size && l >= 0 && c < this.size && c >= 0) {
+    //   let self = this;
+    //   let newNameIndex = this.vidIndex(l, c);
+    //   // Play next sound
+    //   setTimeout(() => {
+    //     self.playVid(l, c);
+    //   }, sound.getDuration() * 1000 * ( Math.random() *  (100 - self.madness) / 100));
+    // }
   }
 }
 
