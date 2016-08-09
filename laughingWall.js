@@ -1,7 +1,3 @@
-
-let tStart = performance.now();
-let t;
-
 class VideoWall {
   constructor (width=150) {
     this.videoNames = createVideoNames();
