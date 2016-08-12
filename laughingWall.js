@@ -2,6 +2,7 @@ class VideoWall {
   constructor (width=150) {
     this.videoNames = createVideoNames();
     this.sounds = [];
+    this.timeouts = [];
     this.size = 20;
     this.madness = 50;
     this.constellation = [];
@@ -16,7 +17,7 @@ class VideoWall {
     for (let i = 0; i < this.size; i++) {
       $('.wrapper').append('<div class="videoLine"></div>');
       for (let j = 0; j < this.size; j++) {
-        let pngName = this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.png';
+        let pngName = this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.png';// TODO Remove previous constellation
         $('.videoLine').last().append('<img>');
         let $target = $('img').last();
         $target
@@ -54,7 +55,15 @@ class VideoWall {
 
   createConstellation(ii, jj) {
     if (this.constellation.length > 0) {
-      // TODO Remove previous constellation
+      this.constellation = [];
+      $('img').addClass('hidden');
+      for (let i = 0, l = this.sounds.length; i < l; i++) {
+        this.sounds[i].stop();
+      }
+      for (let i = 0, l = this.timeouts.length; i < l; i++) {
+        clearTimeout(this.timeouts[i]);
+      }
+      this.timeouts = [];
     }
 
     this.constellation.push([ii, jj]);
@@ -94,9 +103,9 @@ class VideoWall {
     sound.play();
     // Set trigger for next sound
     if (index < this.constellationSize) {
-      setTimeout(() => {
+      this.timeouts.push(setTimeout(() => {
         self.playVid(index + 1);
-      }, sound.duration() * 1000); // ms!!!
+      }, sound.duration() * 1000 * ( Math.random() *  (100 - self.madness) / 100))); // ms!!!
     }
   }
 }
