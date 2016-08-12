@@ -136,3 +136,6 @@ Will create constellation of laughs. Details to be designed. Check notebook at 2
 ## Building a simple constellation
 * Keep the square structure
 * Select one laugh at random -> create a constellation of laughs on the wall and play them sequentially.
+
+## Branch `random`
+Contains a working version of the random progressing on the laughs
