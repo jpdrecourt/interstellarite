@@ -121,3 +121,18 @@ The file extraction now works well. It's a bit tedious to change the name of the
 **TODO**: Explore when the next sound is actually triggered. It seems that the TimeOut waits too long to trigger the next sound. **DONE**
 
 It seems that Buzz doesn't measure the sound duration properly with `sound.getDuration()`
+
+# 2016/08/12
+
+## New name
+Interstellarité - Concatenation of Interstellaire and Hillarité.
+Will create constellation of laughs. Details to be designed. Check notebook at 2016/08/11.
+
+## Change to Howler
+* Offers panning and seems better at handling sound objects
+
+**TODO** Use audiosprite https://github.com/tonistiigi/audiosprite to concatenate the sound files into a single file.
+
+## Building a simple constellation
+* Keep the square structure
+* Select one laugh at random -> create a constellation of laughs on the wall and play them sequentially.

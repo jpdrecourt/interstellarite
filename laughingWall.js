@@ -11,12 +11,13 @@ class VideoWall {
       self.madness = $('#madnessSlider').val();
     });
 
-
     for (let i = 0; i < this.size; i++) {
       $('.wrapper').append('<div class="videoLine"></div>');
       for (let j = 0; j < this.size; j++) {
+        let pngName = this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.png';
         $('.videoLine').last().append('<img>');
-        $('img').last()
+        let $target = $('img').last();
+        $target
           .addClass('gif')
           .addClass('deactivated')
           .addClass('hidden')
@@ -24,12 +25,20 @@ class VideoWall {
             'i': `${i}`,
             'j': `${j}`,
             'id': `${i}_${j}`,
-            'src': this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.png'
+            'src': pngName
           });
         this.sounds[this.vidIndex(i, j)] = new Howl({
-          src: this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.mp3' });
-        this.sounds[this.vidIndex(i, j)].stereo(0.7 * (2 * j / (this.size - 1) - 1));
-
+          src: this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.mp3',
+          stereo: 0.7 * (2 * j / (this.size - 1) - 1),
+          onend: () => {
+            console.log($target);
+            $target
+              .addClass('hidden')
+              .attr({
+                'src': pngName
+              });
+          }
+        });
       }
     }
 
@@ -51,7 +60,6 @@ class VideoWall {
   playVid(l, c) {
     let $target = $(`#${l}_${c}`);
     let nameIndex = this.vidIndex(l, c);
-    // Aci
     $target
       .addClass('activated')
       .removeClass('deactivated')
@@ -65,38 +73,31 @@ class VideoWall {
         .addClass('deactivated')
         .removeClass('activated');}, 100);
     let sound = this.sounds[nameIndex];
-    // sound.bind('ended', () => {
-    //   $target
-    //     .addClass('hidden')
-    //     .attr({
-    //       'src': this.videoNames[(nameIndex)%this.videoNames.length] + '.png'
-    //     });
-    // });
-    // (sound.isPaused()) sound.stop();
+    if (!sound.playing()) sound.stop();
     sound.play();
-    // let next = Math.floor(Math.random() * 4);
-    // switch (next) { // Trigonometric direction from 0 rads
-    //   case 0:
-    //     c++;
-    //     break;
-    //   case 1:
-    //     l--;
-    //     break;
-    //   case 2:
-    //     c--;
-    //     break;
-    //   case 3:
-    //     l++;
-    //     break;
-    // }
-    // if (l < this.size && l >= 0 && c < this.size && c >= 0) {
-    //   let self = this;
-    //   let newNameIndex = this.vidIndex(l, c);
-    //   // Play next sound
-    //   setTimeout(() => {
-    //     self.playVid(l, c);
-    //   }, sound.getDuration() * 1000 * ( Math.random() *  (100 - self.madness) / 100));
-    // }
+    let next = Math.floor(Math.random() * 4);
+    switch (next) { // Trigonometric direction from 0 rads
+      case 0:
+        c++;
+        break;
+      case 1:
+        l--;
+        break;
+      case 2:
+        c--;
+        break;
+      case 3:
+        l++;
+        break;
+    }
+    if (l < this.size && l >= 0 && c < this.size && c >= 0) {
+      let self = this;
+      let newNameIndex = this.vidIndex(l, c);
+      // Play next sound
+      setTimeout(() => {
+        self.playVid(l, c);
+      }, sound.duration() * 1000 * ( Math.random() *  (100 - self.madness) / 100));
+    }
   }
 }
 
@@ -111,7 +112,9 @@ function createVideoNames() {
       {'name': 'VuCQGGhgAaQ', n: 12},
       {'name': '94SKl5gmtQw', n: 10},
       {'name': '-1Jo50Y8L3M', n: 9},
-      {'name': 'JFO7YIK79So', n: 10}
+      {'name': 'JFO7YIK79So', n: 10},
+      {'name': '16ZQeMl5ioI', n: 12},
+      {'name': 'jyvJtA0c06M', n: 13}
     ]
   };
   let output = [];
