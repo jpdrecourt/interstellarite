@@ -139,3 +139,6 @@ Will create constellation of laughs. Details to be designed. Check notebook at 2
 
 ## Branch `random`
 Contains a working version of the random progressing on the laughs
+
+## Branch `constellation`
+Creating a simple constellation based on the wall
