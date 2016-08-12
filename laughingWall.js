@@ -4,6 +4,8 @@ class VideoWall {
     this.sounds = [];
     this.size = 20;
     this.madness = 50;
+    this.constellation = [];
+    this.constellationSize = 10;
     let self = this;
 
     // Slider
@@ -29,15 +31,7 @@ class VideoWall {
           });
         this.sounds[this.vidIndex(i, j)] = new Howl({
           src: this.videoNames[this.vidIndex(i, j)%this.videoNames.length] + '.mp3',
-          stereo: 0.7 * (2 * j / (this.size - 1) - 1),
-          onend: () => {
-            console.log($target);
-            $target
-              .addClass('hidden')
-              .attr({
-                'src': pngName
-              });
-          }
+          stereo: 0.7 * (2 * j / (this.size - 1) - 1)
         });
       }
     }
@@ -47,7 +41,8 @@ class VideoWall {
         ii = parseInt($target.attr('i')),
         jj = parseInt($target.attr('j'));
       if (!isNaN(ii)) {
-        self.playVid(ii, jj);
+        self.createConstellation(ii, jj);
+        self.playConstellation();
       }
     });
 
@@ -57,9 +52,32 @@ class VideoWall {
     return this.size * l + c;
   }
 
-  playVid(l, c) {
+  createConstellation(ii, jj) {
+    if (this.constellation.length > 0) {
+      // TODO Remove previous constellation
+    }
+
+    this.constellation.push([ii, jj]);
+    let i = 0, nextStar;
+    while(i < this.constellationSize) {
+      nextStar = [randInt(this.size), randInt(this.size)];
+      if (this.constellation.indexOf(nextStar) == -1){
+        this.constellation.push(nextStar);
+        i++;
+      }
+    }
+  }
+
+  playConstellation() {
+    this.playVid(0);
+  }
+
+
+  playVid(index) {
+    let l = this.constellation[index][0], c = this.constellation[index][1];
     let $target = $(`#${l}_${c}`);
     let nameIndex = this.vidIndex(l, c);
+    let self = this;
     $target
       .addClass('activated')
       .removeClass('deactivated')
@@ -73,35 +91,21 @@ class VideoWall {
         .addClass('deactivated')
         .removeClass('activated');}, 100);
     let sound = this.sounds[nameIndex];
-    if (!sound.playing()) sound.stop();
     sound.play();
-    let next = Math.floor(Math.random() * 4);
-    switch (next) { // Trigonometric direction from 0 rads
-      case 0:
-        c++;
-        break;
-      case 1:
-        l--;
-        break;
-      case 2:
-        c--;
-        break;
-      case 3:
-        l++;
-        break;
-    }
-    if (l < this.size && l >= 0 && c < this.size && c >= 0) {
-      let self = this;
-      let newNameIndex = this.vidIndex(l, c);
-      // Play next sound
+    console.log(sound.duration());
+    // Set trigger for next sound
+    if (index < this.constellationSize) {
       setTimeout(() => {
-        self.playVid(l, c);
-      }, sound.duration() * 1000 * ( Math.random() *  (100 - self.madness) / 100));
+        self.playVid(index + 1);
+      }, sound.duration() * 1000); // ms!!!
     }
   }
 }
 
-
+// Returns a random integer between 0 and n - 1
+function randInt(n) {
+  return Math.floor(Math.random() * n);
+}
 
 function createVideoNames() {
   let clipData = {
