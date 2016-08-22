@@ -20,7 +20,14 @@ let videos = [
   // 'OHs-OcIglJM',
   // 'WI5nf1s-8po',
   // '16ZQeMl5ioI',
-  'yL1cHkNtXuE'
+  '5PoL61zfFBE',
+  'XCcZ-OXiUKc',
+  'XA0Mcb8cWd0',
+  'yL1cHkNtXuE',
+  'jaGsnIgvq88',
+  'V6-5hWways0',
+  'kivS2cnbMx8',
+  '8qfPJbN6UA0' // Week 4 - March 2016
 ];
 
 getStream(videos);

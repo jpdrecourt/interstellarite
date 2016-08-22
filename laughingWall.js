@@ -6,7 +6,7 @@ class VideoWall {
     this.size = 20;
     this.madness = 50;
     this.constellation = [];
-    this.constellationSize = 10;
+    this.constellationSize = 0;
     let self = this;
 
     // Slider
@@ -46,6 +46,8 @@ class VideoWall {
         self.playConstellation();
       }
     });
+
+    console.log(Howler.ctx);
 
   }
 
@@ -126,7 +128,11 @@ function createVideoNames() {
       {'name': '-1Jo50Y8L3M', n: 9},
       {'name': 'JFO7YIK79So', n: 10},
       {'name': '16ZQeMl5ioI', n: 12},
-      {'name': 'jyvJtA0c06M', n: 13}
+      {'name': 'jyvJtA0c06M', n: 13},
+      {'name': 'ndFTtjiFQAk', n: 17},
+      {'name': 'OHs-OcIglJM', n: 8},
+      {'name': 'WI5nf1s-8po', n: 13},
+      {'name': 'yL1cHkNtXuE', n: 16}
     ]
   };
   let output = [];

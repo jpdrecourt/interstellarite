@@ -142,3 +142,17 @@ Contains a working version of the random progressing on the laughs
 
 ## Branch `constellation`
 Creating a simple constellation based on the wall
+
+# 2016/08/18
+
+## Microphone capture
+Inspiration from this pitch detect app:
+https://github.com/cwilso/PitchDetect/network
+
+# 2016/08/19
+
+## The constellations
+* Each laugh is a star
+* Star brightness: Length of the laugh
+* Star colour: The overall colour of the video (How?)
+* Constellation: Laughs that are related (or not related)
