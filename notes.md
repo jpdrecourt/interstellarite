@@ -156,3 +156,36 @@ https://github.com/cwilso/PitchDetect/network
 * Star brightness: Length of the laugh
 * Star colour: The overall colour of the video (How?)
 * Constellation: Laughs that are related (or not related)
+
+# 2016/08/22
+
+## The constellations - Audio setup
+* Capture audio from microphone
+* Create a moving average
+* Any sound that is higher than the moving average triggers, e.g. http://p5js.org/examples/examples/Sound_Mic_Threshold.php
+* Measure pitch/frequency of that sound and use it to correlate with a constellation
+
+## Questions to solve
+* How to layout the stars in 3D space?
+* How to create the constellations?
+  - What puts them together?
+  - What sets them apart?
+* How to correlate external sounds with the trigger of a constellation?
+* How to navigate freely in the stars?
+
+
+x
+
+x
+
+x
+
+x
+
+x
+
+x
+
+x
+
+x
